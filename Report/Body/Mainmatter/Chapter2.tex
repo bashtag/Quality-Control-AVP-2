@@ -1,0 +1,124 @@
+\chapter{Project Details}
+
+This chapter provides an in-depth explanation of the project's components and tools used. The system was developed using Swift, Xcode, RealityComposer Pro and the Object Capture app to leverage the capabilities of Apple Vision Pro.
+
+% \section{UI/UX Design}
+\input{./Body/Mainmatter/UIUXDesign}
+
+\section{Model Alignment and Object Tracking}
+
+The system leverages ARKit’s capabilities for world tracking and plane detection to enable accurate model alignment and placement. Horizontal planes are specifically chosen to detect ground planes, ensuring precise object placement in the AR environment.
+
+The 3D models used in the application are in the USDZ format, which is optimized for AR experiences on Apple devices.
+
+In the second semester, we enhanced the model alignment system by integrating \textbf{object tracking} to allow more accurate and efficient placement of virtual objects in the AR environment. This feature complements ARKit’s existing plane detection and world tracking by aligning models directly to recognized real-world objects.
+
+Additionally, to visually verify the precision of object alignment, \textbf{all 3D models were made semi-transparent and tinted red}. This visual modification enables users to inspect how accurately the virtual model overlays the physical object beneath it.
+
+
+\subsection{Initial Placement}
+This feature was implemented in the first semester and remains unchanged in the current version. During initial placement, the user is provided with a preview of the selected object. The preview is displayed as a greyed-out version of the object accompanied by a placement tooltip to guide the user in positioning it accurately. This feature allows the user to visually align the object with the detected ground plane before finalizing its placement, as shown in Figure \ref{fig:ui_initial_placement}.
+
+To ensure that objects fit appropriately within the environment, size adjustments are made to the USDZ 3D models using SceneKit.
+
+\subsection{Replacement}
+This feature was introduced in the first semester and has been expanded in the second semester with additional object tracking functionality. If the user needs to reposition an already placed object, they can do so in the position mode of the application. In this mode:
+\begin{itemize}
+    \item The user can perform object rotation, as well as left/right and forward/backward movements.
+    \item These adjustments are enabled only when the position mode is activated in the position view.
+    \item Pinch and drag gestures (thumb and index finger) are used to perform these actions, as shown in Figure \ref{fig:ui_repositioning}.
+    \item Two new buttons were added:
+    \begin{itemize}
+        \item \textbf{Snap Button:} Aligns the virtual model with the most recent object tracking data from ARKit.
+        \item \textbf{Object Tracking Mode Toggle:} Continuously updates the model’s position and orientation using live tracking data when enabled.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Object Tracking}
+To enable object tracking, each tracked model is paired with a reference object file in addition to its USDZ representation. These reference object files were generated using Xcode’s machine learning tool, which extracts object recognition data from the USDZ models.
+
+We used iPhone Pro models equipped with LiDAR sensors to improve the accuracy of 3D reconstruction. This provided better depth data and enabled the creation of more reliable reference objects.
+
+Textured and visually distinct objects were intentionally chosen to support more robust detection and tracking performance.
+
+% Explanation about inspection will go here.
+\section{Inspection}
+
+All inspection operations, including providing input to inspection points and viewing inspection points, occur exclusively within the \textbf{Inspection View}. If the application is not in the \textbf{Inspection View}, all inspection points are removed from the interface. When the user navigates back to the \textbf{Inspection View}, the inspection points are dynamically regenerated (as shown in Figure \ref{fig:ui_inspection_view}).
+
+To prevent user confusion or potential issues (e.g., uncertainty about whether data is saved), all inspection points are also removed when the application navigates to the \textbf{Inspection Detail View}. This design decision ensures reliability and eliminates bugs arising from unclear save states or interactions (as shown in Figure \ref{fig:ui_inspection_detail}).
+
+The inspection system was fully implemented in the first semester and remains unchanged in the current version, with the exception of the removal of the \textbf{Generate Report} button from the \textbf{Inspection View}. Report generation has been moved to the object interaction view.
+
+\subsection{Inspection Points}
+For each inspection point on the placed model, a UI button is displayed (as shown in Figure \ref{fig:ui_inspection_view}). These buttons are dynamically positioned based on the specific locations of the inspection points on the model. When the user clicks an inspection point button, the application navigates to the \textbf{Inspection Detail View}, where the selected inspection point can be reviewed and updated.
+
+\subsection{Inspection Detail View}
+In the \textbf{Inspection Detail View}, users can perform inspections on the selected point. The system supports three types of inspections:
+\begin{itemize}
+    \item \textbf{Yes/No:} A binary choice indicating whether the inspection criteria have been met, as shown in Figure \ref{fig:ui_inspection_detail}.
+    \item \textbf{Count:} Allows the user to input the quantity of specific elements related to the inspection point.
+    \item \textbf{Description:} Provides a text field for the user to enter detailed notes or comments about the inspection point.
+\end{itemize}
+
+% Explanation about the Annotation system will go here.
+
+% Explanation about generating reports will go here.
+\section{Report Generation}
+
+The report generation functionality in this system is powered by the third-party C library \textbf{libxlsxwriter}, which facilitates the creation of Excel files. This feature enables users to export inspection reports, which are saved directly to the Apple Vision Pro's local directory for easy access. While the initial implementation in the first semester focused on exporting object and inspection point data, this semester the functionality was extended to include annotations in the report.
+
+\subsection{Implementation Overview}
+Each report file is named dynamically based on the object being inspected and a unique identifier to avoid conflicts.
+
+\subsection{Report Content}
+The generated report contains the following key information:
+\begin{itemize}
+    \item \textbf{Object Details:} The name, width, height, and depth of the inspected object are recorded in the report.
+    \item \textbf{Inspection Points:} Each inspection point associated with the object is detailed in the report. For every inspection point, the following attributes are included:
+    \begin{itemize}
+        \item \textbf{Name:} The identifier of the inspection point.
+        \item \textbf{Depending on The Type of Inspection:}
+        \begin{itemize}
+            \item \textbf{Count:} The quantity associated with the inspection point, if applicable.
+            \item \textbf{Description:} Detailed notes or observations provided by the user.
+            \item \textbf{Is Correct:} A binary value (Yes/No) indicating whether the inspection point meets the desired criteria.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Annotations} \textit{(Second Semester):} Annotation cards added to the object in the AR scene are also included in the report. For each annotation:
+    \begin{itemize}
+        \item \textbf{Title:} The title of the annotation.
+        \item \textbf{Description:} Textual content describing the annotation.
+        \item \textbf{Yes/No State:} Whether the annotation is marked "Yes" or "No."
+    \end{itemize}
+\end{itemize}
+
+An example of the generated Excel report, including both inspection and annotation data, is shown in Figure \ref{fig:example_excel}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example_excel.png} % Replace with your actual file name
+    \caption{Example Excel report generated by the application, including inspection and annotation data.}
+    \label{fig:example_excel}
+\end{figure}
+% \end{itemize}
+
+% An example of the generated Excel report is shown in Figure \ref{fig:example_excel}.
+% \begin{figure}[h!]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{example_excel.png} % Replace with your actual file name
+%     \caption{Example Excel report generated by the application.}
+%     \label{fig:example_excel}
+% \end{figure}
+
+\subsection{Integration with Apple Vision Pro}
+The reports are stored locally on the Apple Vision Pro device, allowing users to access them conveniently through the file system. This integration ensures compatibility with the Vision Pro environment and leverages the device's capabilities for efficient data handling.
+
+By using \textbf{libxlsxwriter}, the system provides a robust and efficient way to generate and manage detailed Excel reports, enhancing the overall functionality and usability of the quality control application.
+
+
+
+\section{Use Case Diagram}
+The use case diagram below illustrates the interaction between the user and the primary functionalities of the system.
+
+\input{./Body/Mainmatter/useCase}

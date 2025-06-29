@@ -1,0 +1,45 @@
+\begin{landscape}
+\begin{center}
+    \begin{tikzpicture}[node distance=3cm, scale=0.8, transform shape]
+
+        % Actor
+        \node (user) [actor] {User};
+
+        % Use cases
+        \node (start) [usecase, below of=user, xshift=-10cm] {Start ARKit Session};
+        \node (select) [usecase, below of=user, yshift=-10cm, xshift=-6cm] {Select Object};
+        \node (place) [usecase, below of=user, yshift=-10cm, xshift=-2cm] {Place Object};
+        \node (reposition) [usecase, below of=user, yshift=-10cm, xshift=2cm] {Reposition Object};
+        \node (inspect) [usecase, below of=user, yshift=-10cm, xshift=6cm] {Inspect Object};
+        \node (addanno) [usecase, below of=user, xshift=10cm] {Add Annotation};
+        \node (report) [usecase, below of=user, xshift=14cm] {Generate Report};
+
+         % Sub-use cases for ARKit session
+        \node (tracking) [usecase, below of=start, xshift=-6cm, yshift=-2cm] {Object Tracking};
+        \node (plane) [usecase, below of=start, xshift=-2cm, yshift=-2cm] {Plane Detection};
+        \node (world) [usecase, below of=start, xshift=2cm, yshift=-2cm] {World Tracking};
+
+        % Sub-use cases for Annotation
+        \node (search) [usecase, below of=addanno, xshift=-2cm, yshift=-2cm] {Search Annotation (incl. Siri)};
+        \node (focus) [usecase, below of=addanno, xshift=2cm, yshift=-2cm] {Focus Annotation};
+
+        % Connections between actor and use cases
+        \draw [->] (user) -- (start);
+        \draw [->] (user) -- (select);
+        \draw [->] (user) -- (place);
+        \draw [->] (user) -- (reposition);
+        \draw [->] (user) -- (inspect);
+        \draw [->] (user) -- (addanno);
+        \draw [->] (user) -- (report);
+        
+        % Relationships between use cases
+        \draw [->] (start) -- node[midway, right] {includes} (tracking);
+        \draw [->] (start) -- node[midway, right] {includes} (plane);
+        \draw [->] (start) -- node[midway, right] {includes} (world);
+
+         \draw [->] (addanno) -- node[midway, right] {includes} (search);
+    \draw [->] (addanno) -- node[midway, right] {includes} (focus);
+
+    \end{tikzpicture}
+\end{center}
+\end{landscape}
