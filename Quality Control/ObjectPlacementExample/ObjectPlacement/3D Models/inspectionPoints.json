@@ -1,0 +1,99 @@
+[
+    {
+        "objectName": "car",
+        "inspectionType": "InspectionPointForYesNoQuestion",
+        "inspectionName": "Is the PASSAT writing true?",
+        "inspectionPoint": { "x": -27.723, "y": 12.842, "z": -0.035 }
+    },
+    {
+        "objectName": "car",
+        "inspectionType": "InspectionPointForDescription",
+        "inspectionName": "Where does the mirror get from?",
+        "inspectionPoint": { "x": 9.238, "y": 12.689, "z": 12.099 }
+    },
+    {
+        "objectName": "car",
+        "inspectionType": "InspectionPointForCount",
+        "inspectionName": "How many doors on this side?",
+        "inspectionPoint": { "x": 4.077, "y": 9.115, "z": 12.183 }
+    },
+    {
+        "objectName": "bumper",
+        "inspectionType": "InspectionPointForDescription",
+        "inspectionName": "Add a description",
+        "inspectionPoint": { "x": 17.039, "y": 13.239, "z": 5.791 }
+    },
+    {
+        "objectName": "bumper",
+        "inspectionType": "InspectionPointForYesNoQuestion",
+        "inspectionName": "Is there a TOYOTA logo?",
+        "inspectionPoint": { "x": -1.651, "y": 14.198, "z": 10.261 }
+    },
+    {
+        "objectName": "Car Door",
+        "inspectionType": "InspectionPointForYesNoQuestion",
+        "inspectionName": "Is the door lock placed right?",
+        "inspectionPoint": { "x": 23.936, "y": 30.997, "z": 1.087 }
+    },
+    {
+        "objectName": "Motor",
+        "inspectionType": "InspectionPointForDescription",
+        "inspectionName": "Add a description",
+        "inspectionPoint": { "x": 13.706, "y": 14.464, "z": 22.236 }
+    },
+    {
+        "objectName": "Motor",
+        "inspectionType": "InspectionPointForCount",
+        "inspectionName": "How many holes are there?",
+        "inspectionPoint": { "x": -0.071, "y": 30.843, "z": -2.105 }
+    },
+    {
+        "objectName": "Mac Box",
+        "inspectionType": "InspectionPointForYesNoQuestion",
+        "inspectionName": "Does the Mac text look good?",
+        "inspectionPoint": { "x": 0.0, "y": 6.392, "z": -7.704 }
+    },
+    {
+        "objectName": "Mac Box",
+        "inspectionType": "InspectionPointForCount",
+        "inspectionName": "How many barcodes are there?",
+        "inspectionPoint": { "x": -4.638, "y": 13.785, "z": 4.303 }
+    },
+    {
+        "objectName": "Mac Box",
+        "inspectionType": "InspectionPointForDescription",
+        "inspectionName": "Where was it made?",
+        "inspectionPoint": { "x": 3.745, "y": 13.741, "z": 1.204 }
+    },
+    {
+        "objectName": "AVPBox",
+        "inspectionType": "InspectionPointForDescription",
+        "inspectionName": "What is the warning message?",
+        "inspectionPoint": { "x": -9.561, "y": 28.351, "z": 2.751 }
+    },
+    {
+        "objectName": "AVPBox",
+        "inspectionType": "InspectionPointForYesNoQuestion",
+        "inspectionName": "Is the barcode scannable?",
+        "inspectionPoint": { "x": -19.169, "y": 11.681, "z": 2.751 }
+    },
+    {
+        "objectName": "Charger Unit",
+        "inspectionType": "InspectionPointForDescription",
+        "inspectionName": "What is the text on the battery?",
+        "inspectionPoint": { "x": -26.72, "y": 42.556, "z": -8.186 }
+    },
+    {
+        "objectName": "Charger Unit",
+        "inspectionType": "InspectionPointForYesNoQuestion",
+        "inspectionName": "Is it compatible with iPhone?",
+        "inspectionPoint": { "x": 28.389, "y": 104.419, "z": -5.025 }
+    },
+    {
+        "objectName": "Charger Unit",
+        "inspectionType": "InspectionPointForCount",
+        "inspectionName": "How many holes are there?",
+        "inspectionPoint": { "x": 0.574, "y": 91.393, "z": 5.817 }
+    },
+    
+]
