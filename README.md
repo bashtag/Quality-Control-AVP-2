@@ -1,6 +1,6 @@
 # 🎓 Quality-Control-AVP-2
 
-This repository contains our **graduation project** developed at **Gebze Technical University**, in collaboration with [Melike Seyitoğlu](https://www.linkedin.com/in/melikeseyitoglu).  
+This repository contains our **graduation project** developed at **Gebze Technical University**, in collaboration with [Melike Seyitoğlu](https://www.linkedin.com/in/melike-seyito%C4%9Flu-276512216/).  
 We built an **AR-based quality control system** for **Apple Vision Pro**, featuring:
 
 - 📍 Real-time object tracking  
